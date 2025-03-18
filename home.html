@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div id="nav-bar" class="nav-bar"> </div>
+        <div id="stars"> </div>
+        <img id="avatar" class="avatar" alt="Avatar" src="https://avatars.githubusercontent.com/u/139264639?v=4" onclick="window.open('https://github.com/InfernusScripts', '_blank')">
+        <div class="title">About Me</div>
+        <div class="line"></div>
+        <div class="content">
+            <p>Hello there, this is my first website! 😊👋</p>
+            <p>I'm Cherry the Coder (hiding my real name). My favorite color is purple💜, a Roblox Coder & Cheater.</p>
+            <p>I'm Lua, Python, C++, and C# coder.</p>
+            <p>Fact: Click my pfp at the top of the page to visit my GitHub.</p>
+            <div class="line"></div>
+            <p>I know Lua for more than 4 years, and mostly it is Luau (Roblox).</p>
+            <p>At other languages I'm kinda new.</p>
+            <p>At C# I'm around 1 year, and still not brilliant.</p>
+            <p>At Python I'm around 6 months, but it is way easier than C#. I'm kinda good at it.</p>
+            <p>At C++ I'm very new, only around 2 months. I was scared of it at first, but then I realized that it is C#, but with more functions and better interaction with OS.</p>
+            <div class="line"></div>
+            <p>In my GitHub you may find some of my projects such as:</p>
+            <button class="button" onclick="window.open('https://github.com/InfernusScripts/Null-Fire/tree/main/README.md', '_blank')">NullFire</button>
+            <button class="button" onclick="window.open('https://github.com/InfernusScripts/Octo-Spy', '_blank')">Octo-Spy</button>
+            <button class="button" onclick="window.open('https://github.com/InfernusScripts/Executor-Tests/tree/main/Environment', '_blank')">Cherry's Environment Test (CET)</button>
+            <button class="button" onclick="window.open('https://github.com/InfernusScripts/Executor-Tests/tree/main/Identity', '_blank')">Executor Identity Test (EIT)</button>
+        </div>
+
+        <script>
+            const pages = {
+                Home: '/home',
+                Projects: '/projects/home',
+                Links: '/links'
+            };
+            
+            const navbar = document.getElementById("nav-bar");
+    
+            for (const [text, url] of Object.entries(pages)) {
+                const navLink = document.createElement('span');
+                navLink.className = 'nav-link';
+                navLink.textContent = text;
+                navLink.onclick = () => window.location.href = url;
+                navbar.appendChild(navLink);
+            }
+    
+            const layers = [
+                { color: 'rgb(225, 200, 225)', size: 5, speed: 1.25 },
+                { color: 'rgb(200, 175, 200)', size: 4, speed: 1.75 },
+                { color: 'rgb(175, 150, 175)', size: 4, speed: 2.5 },
+                { color: 'rgb(150, 125, 150)', size: 3, speed: 5 },
+                { color: 'rgb(125, 100, 125)', size: 3, speed: 10 }
+            ];
+            
+            const starsContainer = document.getElementById("stars");
+        
+            function generateStars() {
+                starsContainer.innerHTML = '';
+                const fragment = document.createDocumentFragment();
+    
+                for (let i = 0; i < Math.max(Math.round(window.innerWidth / 2.5), 50); i++) {
+                    const layer = layers[Math.floor(Math.random() * layers.length)];
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.backgroundColor = layer.color;
+                    star.style.width = `${layer.size}px`;
+                    star.style.height = `${layer.size}px`;
+                    star.style.top = `${Math.random() * window.innerHeight}px`;
+                    star.style.left = `${Math.random() * window.innerWidth}px`;
+                    star.style.animationDuration = `${(Math.random() * 5 + layer.speed).toFixed(2)}s`;
+                    const delay = Math.random() * 2;
+                    star.style.animationDelay = `${delay}s`;
+                    fragment.appendChild(star);
+                }
+    
+                starsContainer.appendChild(fragment);
+            }
+    
+            window.onload = generateStars;
+            window.onresize = generateStars;
+        </script>
+    </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Me</title>
+        <style>
+            body {
+                background: linear-gradient(to bottom, rgb(15, 5, 15), rgb(75, 20, 75));
+                background-attachment: fixed;
+                background-size: cover;
+                color: rgb(255, 225, 255);
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                overflow-y: scroll; 
+                position: relative;
+            }
+            .nav-bar {
+                background-color: rgb(255, 225, 255);
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                display: flex;
+                justify-content: center;
+                font-size: 0.9em;
+                height: 30px;
+            }
+            .nav-link {
+                background-color: rgb(255, 225, 255);
+                color: rgb(20, 5, 20);
+                padding: 0px 20px;
+                text-decoration: none;
+                transition: background-color 0.3s, color 0.3s;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                cursor: default;
+            }
+            .nav-link:hover {
+                background-color: rgb(20, 5, 20);
+                color: rgb(255, 225, 255);
+                cursor: pointer;
+            }
+            .star {
+                position: fixed;
+                border-radius: 50%;
+                opacity: 0;
+                animation: move 5s linear infinite, fadeIn 0.5s forwards;
+                z-index: 0;
+            }
+            @keyframes move {
+                from {
+                    transform: translateY(100vw);
+                }
+                to {
+                    transform: translateY(-100px);
+                }
+            }
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            .avatar {
+                display: block;
+                margin: 80px auto 20px;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 2px solid rgb(255, 225, 255);
+                position: relative;
+                z-index: 1;
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
+            .avatar:hover {
+                transform: scale(1.15);
+            }
+            
+            .title {
+                position: relative;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 2.5em;
+                text-align: center;
+                z-index: 1;
+            }
+            
+            .line {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                height: 2px;
+                background-color: rgb(255, 225, 255);
+                z-index: 1;
+                margin: 20px 0;
+            }
+            
+            .content {
+                position: relative;
+                top: 40px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                text-align: center;
+                z-index: 1;
+            }
+            
+            .button {
+                background-color: transparent;
+                color: rgb(255, 225, 255);
+                border: 2px solid rgb(255, 225, 255);
+                border-radius: 5px;
+                padding: 10px 20px;
+                margin: 10px;
+                cursor: pointer;
+                font-size: 1.2em;
+                transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            }
+            .button:hover {
+                background-color: rgb(255, 225, 255);
+                color: rgb(20, 5, 20);
+                transform: scale(1.15);
+            }
+        </style>
+    </head>
+</html>
